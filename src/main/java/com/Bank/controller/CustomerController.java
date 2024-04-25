@@ -3,6 +3,7 @@ package com.Bank.controller;
 import com.Bank.payload.CustomerDto;
 import com.Bank.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -42,8 +43,8 @@ public class CustomerController {
     {
         return new ResponseEntity<>(customerService.deposite(amount,accountNumber),HttpStatus.OK);
     }
-    @PostMapping("/withdrawl/{amount}/{accountNumber}")
-    public ResponseEntity<?> withdrawl(@PathVariable int amount,@PathVariable int accountNumber)
+    @PostMapping("/withdrawl/{amount}")
+    public ResponseEntity<?> withdrawl(@PathVariable int amount,@Param("accountNumber") int accountNumber)
     {
         return new ResponseEntity<>(customerService.withdrawl(amount,accountNumber),HttpStatus.OK);
     }
